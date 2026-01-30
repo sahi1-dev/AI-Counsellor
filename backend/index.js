@@ -23,24 +23,24 @@ app.post("/api/counsel", async (req, res) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
         },
-        body: JSON.stringify({
-            model: "llama3-8b-8192",
-            messages: [
-              {
-                role: "system",
-                content:
-                  "You are an AI study-abroad counsellor. Help students with admissions, profile evaluation, university shortlisting, SOP, LOR, exams, and application strategy. Be practical, structured, and admission-focused.",
-              },
-              {
-                role: "user",
-                content: problem,
-              },
-            ],
-            temperature: 0.7,
-            max_tokens: 600,
-          }),
-      }
-    );
+       body: JSON.stringify({
+                model: "llama-3.1-8b-instant",
+                messages: [
+                  {
+                    role: "system",
+                    content:
+                      "You are an AI study-abroad counsellor. Help students with admissions, profile evaluation, university shortlisting, SOP, LOR, exams, and application strategy. Be practical, structured, and admission-focused.",
+                  },
+                  {
+                    role: "user",
+                    content: problem,
+                  },
+                ],
+                temperature: 0.6,
+                max_tokens: 500,
+              }),
+                    }
+                  );
 
           const data = await response.json();
           console.log("AI TEXT:", data?.choices?.[0]?.message?.content);
