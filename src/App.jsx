@@ -76,17 +76,18 @@ End your response with [LOCK_DONE]
     }
 
     try {
-      const res = await axios.post("http://localhost:3000/api/counsel", {
+      const res = await axios.post(
+             "https://ai-counsellor-9pu6.onrender.com/api/counsel",
+           {
         problem: `
 You are an AI counsellor.
 
 Current Stage: ${stage}
 
 Rules:
-Stage 1: Ask questions to build profile. When profile feels complete, reply with [STAGE_COMPLETE]
-Stage 2: Show university shortlist only
-Stage 3: Lock ONE university
-Stage 4: Give application checklist
+- Stay within the current stage only
+- Do not ask questions from future stages
+- Be concise and helpful
 
 ${extraContext}
 
