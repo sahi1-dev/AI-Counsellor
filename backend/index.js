@@ -52,10 +52,9 @@ app.post("/api/counsel", async (req, res) => {
           }
 
           // 🛟 FALLBACK (ONLY IF GROQ FAILS)
-          return res.json({
-            reply:
-              "I'm here to help with your study abroad journey. Could you tell me more about your academic background or goals?",
-          });
+                  return res.status(500).json({
+                    reply: "AI_ERROR: Groq did not return a valid response",
+                   });
   } catch (error) {
     console.error("Server error:", error);
     res.status(500).json({ reply: "Server error. Try again later." });
