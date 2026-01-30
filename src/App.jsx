@@ -111,8 +111,7 @@ End your response with [LOCK_DONE]
         <div className="w-full max-w-6xl h-[85vh] rounded-3xl bg-[#0b0f19] shadow-2xl grid grid-cols-12 overflow-hidden">
 
           {/* LEFT PANEL */}
-          <div className="col-span-4 bg-[#0f1522] border-r border-white/10 p-8 flex flex-col">
-            <h1 className="text-2xl font-bold text-white mb-2">
+<div className="col-span-4 bg-[#0f1522] border-r border-white/10 p-8 flex flex-col overflow-hidden">            <h1 className="text-2xl font-bold text-white mb-2">
               AI COUNSELLOR
             </h1>
 
