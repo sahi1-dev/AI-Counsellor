@@ -76,26 +76,11 @@ End your response with [LOCK_DONE]
     }
 
     try {
-      const res = await axios.post(
-             "https://ai-counsellor-9pu6.onrender.com/api/counsel",
-           {
-        problem: `
-You are an AI counsellor.
-
-Current Stage: ${stage}
-
-Rules:
-- Stay within the current stage only
-- Do not ask questions from future stages
-- Be concise and helpful
-
-${extraContext}
-
-User message:
-${userMsg.text}
-        `,
-      });
-
+            const res = await axios.post( "https://ai-counsellor-9pu6.onrender.com/api/counsel",
+        {
+          problem: userMsg.text,
+        }
+      );
       const aiReply = res.data.reply;
 
       // 🔄 AUTO STAGE TRANSITIONS
