@@ -22,7 +22,7 @@ app.post("/api/counsel", async (req, res) => {
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
+          model: "llama3-8b-8192",
           messages: [
             {
               role: "system",
@@ -57,14 +57,12 @@ Rules:
     );
 
     const data = await response.json();
+    console.log("Groq raw response:", data);
 
-    if (!data.choices || !data.choices[0]) {
-      return res.status(500).json({
-        reply: "AI response error. Please try again.",
-      });
-    }
+    const reply = data?.choices?.[0]?.message?.content ||
+        "I'm here to help you with your study abroad planning.";
 
-    res.json({ reply: data.choices[0].message.content });
+        res.json({ reply });
   } catch (error) {
     console.error("Server error:", error);
     res.status(500).json({ reply: "Server error. Try again later." });
