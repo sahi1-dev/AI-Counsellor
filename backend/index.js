@@ -26,12 +26,8 @@ app.post("/api/counsel", async (req, res) => {
             messages: [
               {
                 role: "system",
-                content: `
-                  You are an AI study-abroad counsellor.
-                  Help students with admissions, profile evaluation, university shortlisting,
-                  SOP, LOR, exams, and application strategy.
-                  Be practical, structured, and admission-focused.
-                  `,
+                content:
+                  "You are an AI study-abroad counsellor. Help students with admissions, profile evaluation, university shortlisting, SOP, LOR, exams, and application strategy. Be practical, structured, and admission-focused.",
               },
               {
                 role: "user",
