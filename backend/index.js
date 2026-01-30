@@ -9,6 +9,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+console.log("KEY CHECK:", process.env.GROQ_API_KEY);
+
 app.post("/api/counsel", async (req, res) => {
   const { problem } = req.body;
 
