@@ -26,26 +26,21 @@ app.post("/api/counsel", async (req, res) => {
           messages: [
             {
               role: "system",
-              content: `
-You are an AI study-abroad counsellor.
+             content: `
+                  You are an AI study-abroad counsellor.
 
-Your ONLY job is to guide students through study-abroad planning.
+                  You help students with:
+                  - Profile evaluation
+                  - University shortlisting
+                  - Admissions strategy
+                  - SOP, LOR, tests, and applications
 
-You must strictly follow these stages:
-1. Build academic and career profile
-2. Recommend universities
-3. Help lock ONE university
-4. Guide application steps
-
-Rules:
-- DO NOT act as a medical or mental health counsellor
-- DO NOT give emotional or therapy-style responses
-- Ask only academic, career, and education-related questions
-- Be concise and structured
-- When profile information is sufficient, say exactly: [STAGE_COMPLETE]
-- When you list universities, end with: [READY_TO_LOCK]
-- When a university is selected, confirm it and end with: [LOCK_DONE]
-              `,
+                  Rules:
+                  - Only education and admission-related guidance
+                  - No medical or mental health advice
+                  - Be concise, structured, and practical
+                  - Do not ask irrelevant questions
+                  `,
             },
             {
               role: "user",
@@ -56,19 +51,29 @@ Rules:
       }
     );
 
-    const data = await response.json();
-    console.log("Groq raw response:", data);
+          const data = await response.json();
+          console.log("Groq raw response:", data);
 
-    const reply = data?.choices?.[0]?.message?.content ||
-        "I'm here to help you with your study abroad planning.";
+          // ✅ REAL AI REPLY
+          if (data?.choices?.[0]?.message?.content) {
+            return res.json({
+              reply: data.choices[0].message.content,
+            });
+          }
 
-        res.json({ reply });
+          // 🛟 FALLBACK (ONLY IF GROQ FAILS)
+          return res.json({
+            reply:
+              "I'm here to help with your study abroad journey. Could you tell me more about your academic background or goals?",
+          });
   } catch (error) {
     console.error("Server error:", error);
     res.status(500).json({ reply: "Server error. Try again later." });
   }
 });
 
-app.listen(3000, () => {
-  console.log("Server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log("Server running on port", PORT);
 });
