@@ -22,36 +22,30 @@ app.post("/api/counsel", async (req, res) => {
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "llama3-8b-8192",
-          messages: [
-            {
-              role: "system",
-             content: `
+            model: "llama3-8b-8192",
+            messages: [
+              {
+                role: "system",
+                content: `
                   You are an AI study-abroad counsellor.
-
-                  You help students with:
-                  - Profile evaluation
-                  - University shortlisting
-                  - Admissions strategy
-                  - SOP, LOR, tests, and applications
-
-                  Rules:
-                  - Only education and admission-related guidance
-                  - No medical or mental health advice
-                  - Be concise, structured, and practical
-                  - Do not ask irrelevant questions
+                  Help students with admissions, profile evaluation, university shortlisting,
+                  SOP, LOR, exams, and application strategy.
+                  Be practical, structured, and admission-focused.
                   `,
-            },
-            {
-              role: "user",
-              content: problem,
-            },
-          ],
-        }),
+              },
+              {
+                role: "user",
+                content: problem,
+              },
+            ],
+            temperature: 0.7,
+            max_tokens: 600,
+          }),
       }
     );
 
           const data = await response.json();
+          console.log("AI TEXT:", data?.choices?.[0]?.message?.content);
           console.log("Groq raw response:", data);
 
           // ✅ REAL AI REPLY
