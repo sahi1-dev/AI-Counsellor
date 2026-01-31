@@ -1,16 +1,60 @@
-# React + Vite
+# AI Counsellor – Study Abroad 🎓
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is an AI-powered study abroad counsellor built as part of the Humanity Founders Hackathon.
 
-Currently, two official plugins are available:
+The idea was simple:  
+Students planning to study abroad often feel confused about profiles, universities, and application steps.  
+This app tries to solve that by guiding them step by step using an AI counsellor.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🔗 Live Project
+- *Live App:* https://ai-counsellor-9pu6.onrender.com  
+- *Demo Video:* (Add Loom link here)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 💡 What does this project do?
+The AI counsellor guides a student through a *structured journey*, instead of random chat.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The flow is divided into clear stages:
+1. Understanding the student’s academic profile  
+2. Discovering suitable universities  
+3. Locking one final university  
+4. Showing an application checklist (SOP, LORs, exams, etc.)
+
+This keeps the conversation focused and practical.
+
+---
+
+## ✨ Key Highlights
+- Mandatory onboarding before chat starts  
+- Stage-based counselling flow  
+- University shortlisting (Dream / Target / Safe)  
+- Application readiness checklist  
+- Real AI responses powered by Groq LLM  
+- Manual stage control for demo stability
+
+---
+
+## 🛠 Tech Stack
+- *Frontend:* React (Vite) + Tailwind CSS  
+- *Backend:* Node.js + Express  
+- *AI:* Groq (LLaMA 3.1 model)  
+- *Deployment:* Render
+
+---
+
+## 🧠 Why manual stage control?
+During a live demo, AI-controlled state transitions can sometimes behave unpredictably.
+
+To ensure a smooth and reliable demo experience, stage changes are controlled manually.  
+This keeps the focus on *logic, flow, and AI quality* rather than edge-case failures.
+
+---
+
+## ⚙️ Environment Setup
+Create a .env file inside the backend folder:
+
+```env
+GROQ_API_KEY=your_groq_api_key_here
